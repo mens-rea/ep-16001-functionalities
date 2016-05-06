@@ -5,6 +5,8 @@
     <script src="javascript/scrollify/jquery.scrollify.min.js"></script>
     <script src="javascript/readmore/readmore.min.js"></script>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
     <style>
     /* start main 16001 functions */
       * {
@@ -370,7 +372,7 @@
     /*end of navicon styles*/
 
     /*start of header morph styles*/
-    #header {
+    /*#header{
         position: fixed;
         top: 0;
         left: 0;
@@ -385,14 +387,14 @@
         transition: height 0.3s;
         text-align: center;
         line-height: 80px;
-      }
+      }*/
 
-      #header.shrink {
+      /*#header.shrink {
         height: 50px;
         line-height: 40px;
-      }
+      }*/
 
-      #header h1 {
+      /*#header h1 {
         font-size: 30px;
         font-weight: normal;
         -webkit-transition: all 0.3s;
@@ -405,8 +407,261 @@
         -webkit-transition: all 0.3s;
         -moz-transition: all 0.3s;
         transition: all 0.3s;
-      }
+      }*/
       /*end of header morph style*/
+
+      /*start of ep header*/
+      /* HEADER */
+      .header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #fdcd3d;  
+        color: white;
+        z-index: 9;
+        height: auto;
+      }
+      .logo-container{
+        text-align: left;
+      }
+      .logo-container .logo-full{
+        padding: 10px 0px;  
+      }
+
+      /* BANNER */
+      .banner{
+          position: fixed;
+          background-color: #fdcd3d;
+          height: 250px;
+          width: 100%;
+          padding: 60px 125px;
+      }
+      .banner label {
+        font-family: "Lato-Bold";
+        text-transform: uppercase;
+        font-size: 36px;
+        color:white;
+      }
+      .banner-subtitle{
+        width: 75%;
+        color: #f5b48c;
+      }
+      .search-banner{
+        padding: 100px 125px;
+      }
+      #indiv-banner{
+        padding: 40px 30px;   
+      }
+      
+      /* NAVIGATION */
+      .menu-navigation{
+        list-style: none;
+        padding-left: 0px;
+        height: auto;
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+      .navbar-collapse{
+        border-top: 0px !important;
+      }
+      .navbar-toggle{
+        margin: 0px !important;
+        color: white;
+        background-color: #fdcd3d !important;
+        border-radius: 0px !important;
+        padding: 19px 12px !important;
+        margin-right: -30px !important;
+      }
+      .icon-bar{
+        width: 30px !important;
+        height: 5px !important;
+        background-color: #fdcd3d;
+      }
+      #full-navbar{
+        float: left !important;
+      }
+      .menu-navigation li{
+        margin-top: 0px;
+      }
+      .menu-navigation li a{
+        display: block;
+        padding: 15px;
+        min-width: 75px;
+        text-align: center;
+        border-bottom: 10px solid #fdcd3d;
+        text-transform: uppercase;
+        color: #1f1f1f;
+        font-size: 12px;
+        font-family: "Lato-Bold";
+        transition: all 0.1s ease;
+      }
+      .menu-navigation li.current-menu-item a{
+        color: #333;
+        border-bottom: 10px solid #fdcd3d;
+        background-color: transparent;
+        font-family: "Lato-Bold";
+      }
+      .menu-navigation li a:hover, .menu-navigation li a:active, .menu-navigation li a:focus{
+        color: white;
+        border-bottom: 10px solid white;
+        background-color: transparent;
+        font-family: "Lato-Bold";
+      }
+      #mobile-navbar li a{
+        border-bottom: 0;
+      }
+      .header-subnav{
+        border-bottom: 1px solid #FFD761;    
+          margin-bottom:  5px;
+      }
+      .header-subnav ul{
+        float: right;
+      }
+      .header-subnav ul li a{
+        border: none;
+          /*border-right: 1px solid #1f1f1f;*/
+          padding: 2px 7px;
+          min-width: 0;
+          text-transform: capitalize;
+          font-family: "Lato-Regular";
+      }
+      .header-subnav ul li:last-child a{
+        border-right: none;
+      }
+
+      .header-subnav ul li.current-menu-item a,
+      .header-subnav ul li a:hover,
+      .header-subnav ul li a:active,
+      .header-subnav ul li a:focus{
+        border-bottom:none;
+        min-width: 0;
+        font-family: "Lato-Regular";
+      }
+
+      #header #header-container{
+        height: 100px;
+        overflow: hidden;
+        transition: all ease 0.5s;
+        transition-timing-function: linear,linear,linear;
+        transition-timing-function: cubic-bezier(0.4, 0, 1, 1),cubic-bezier(.175,.885,.32,1.14),linear;
+      }
+      #header.shrink #header-container{
+        height: 0px;
+        transition: all ease 0.5s;
+        overflow: hidden;
+        transition-timing-function: linear,linear,linear;
+        transition-timing-function: cubic-bezier(0.4, 0, 1, 1),cubic-bezier(.175,.885,.32,1.14),linear;
+      }
+      /*end of ep header*/
+
+      /* UI SEARCH */
+      .search-container{
+        float: right;
+      }
+      .search-col{
+        padding-right: 0px !important;
+      }
+      .search-col .sb-search{
+        margin-right: -2px;
+      }
+      .sb-search {
+        position: relative; 
+        border-left: 1px solid #fdcd3d;
+        border-right: 1px solid #fdcd3d;
+        width: 0%;
+        min-width: 50px;
+        height: 59px;
+        float: right;
+        overflow: hidden;
+        -webkit-transition: width 0.3s;
+        -moz-transition: width 0.3s;
+        transition: width 0.3s;
+        -webkit-backface-visibility: hidden;
+      }
+      .sb-search-input {
+        border: none;
+        outline: none;
+        background: #fff; 
+        width: 100%;
+        height: 30px;
+        margin: 12px 0;
+        z-index: 10;
+        padding: 10px 5px;
+        font-family: "Lato-Regular";
+        font-size: 12px;
+        color: #fdcd3d;
+      }
+      .header-search-box{
+        padding: 20px 0;
+        float: right;
+      }
+      #header-search-popup{
+        display: none;
+        width: 250px;
+        position: fixed;
+        top: 60px;
+        right: 8.6%;
+        background-color: #fdcd3d;
+        padding: 10px 10px;
+      }
+      #header-search-popup .sb-search-input{
+        position: relative;
+        margin: 0px;
+      }
+      .sb-search-input::-webkit-input-placeholder {
+        color: #2e2e2e
+      }
+
+      .sb-search-input:-moz-placeholder {
+        color: #2e2e2e
+      }
+
+      .sb-search-input::-moz-placeholder {
+        color: #2e2e2e
+      }
+
+      .sb-search-input:-ms-input-placeholder {
+        color: #efb480;
+      }
+      .sb-icon-search,
+      .sb-search-submit  {
+        width: 30px;
+        height: 100%;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 0;
+        margin: 0;
+        line-height: 38px;
+        text-align: center;
+        cursor: pointer;
+        color:#1f1f1f;
+      }
+      .sb-search-submit {
+        background: #fff; /* IE needs this */
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
+          filter: alpha(opacity=0); /* IE 5-7 */
+          opacity: 0;
+        color: transparent;
+        border: none;
+        outline: none;
+        z-index: -1;    
+      }
+      .sb-icon-search {
+        color: #fdcd3d;
+        background: white;  
+        z-index: 90;
+        font-size: 18px;
+        padding: 12px 30px;
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        -webkit-font-smoothing: antialiased;
+      }
     </style>
 
     <script>
@@ -551,9 +806,73 @@
     <div id="overlay">
     </div>
 
-    <div id="header">
-      <h1> HEADER TEXT </h1>
-    </div>
+    <id
+
+    <!-- start of header -->
+    <div class="header" id="header">
+          
+          <div class="col-sm-12 hidden-xs header-subnav">
+            <div class="container">
+              <ul class="menu-navigation nav navbar-nav submenu" id="secondary-navbar">
+                <li><a href="#">Sample Link</a></li>
+                <li><a href="#">Sample Link</a></li>
+                <li><a href="#">Sample Link</a></li>
+                <li><a href="#">Sample Link</a></li>
+                <li><a href="#">Sample Link</a></li>
+                <li><a href="#">Sample Link</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="container" id="header-container">
+            <div class="col-xs-2 col-sm-8">
+              <div class="logo-container col-sm-10 hidden-xs">
+                <a href="#"><img class="logo-full img-responsive" src="img/logo.png" /></a>
+              </div>
+            </div>
+
+            <div class="header-search-box hidden-xs col-sm-3">
+              <form action="<?php //bloginfo('siteurl'); ?>" id="searchform" method="get">
+                <input class="sb-search-input" placeholder="Enter..." type="text" value="" name="s" id="s"/>
+                <input class="sb-search-submit" type="submit" value="Search" id="searchsubmit"/>
+              </form>               
+            </div>
+
+            <!-- header mobile view -->
+            <div class="col-xs-10 col-sm-11 hidden-md hidden-lg">
+              <div class="navbar-header">
+                  <div class="search-container hidden-sm hidden-md hidden-lg">
+                    <div class="col-xs-12">
+                      <div id="sb-search" class="sb-search">
+                        <form action="<?php bloginfo('siteurl'); ?>" id="searchform" method="get">
+                          <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="s" id="s"/>
+                              <input class="sb-search-submit" type="submit" value="" value="Search" id="searchsubmit" />
+                          <span class="sb-icon-search"><i class="fa fa-search"></i></span>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              </div> <!-- contain header -->
+              <div class="collapse navbar-collapse">
+
+                  <!--desktop and tablet menu -->
+                  <div class="container">
+                      <ul class="hidden-xs menu-navigation nav navbar-nav col-sm-12" id="full-navbar">
+                        <li><a href="#">Sample Link</a></li>
+                        <li><a href="#">Sample Link</a></li>
+                        <li><a href="#">Sample Link</a></li>
+                        <li><a href="#">Sample Link</a></li>
+                        <li><a href="#">Sample Link</a></li>
+                        <li><a href="#">Sample Link</a></li>
+                      </ul>
+                  </div>
+
+                </div>
+        </div> <!-- end of header -->
+
 
     <div id="first" class="defaultDiv">
       <!-- <button>
