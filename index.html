@@ -1,0 +1,1602 @@
+<html>
+  <head>
+    <script src="javascript/jquery-2.2.3.min.js"></script>
+    <script src="javascript/scrollify/jquery.scrollify.min.js"></script>
+    <script src="javascript/readmore/readmore.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .defaultDiv {
+        height: 800px;
+        width: 100%;
+      }
+
+      #first{
+        background-color: blue;
+      }
+
+      #second {
+        background-color: green;
+      }
+
+      #third {
+        background-color: gray;
+      }
+
+      #sampleContent {
+        width: 500px !important;
+        height: auto;
+        margin: 0 auto;
+        padding: 10px;
+        border: 1px solid black;
+        background-color: #FFF;
+      }
+
+      #tabpanel-menu{
+        width: 100%;
+        max-height: none;
+        padding: 3em;
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        visibility: visible;
+        -webkit-transition: max-height,padding,visibility;
+        -moz-transition: max-height,padding,visibility;
+        -o-transition: max-height,padding,visibility;
+        transition: max-height,padding,visibility;
+        -webkit-transition-duration: 0ms,0ms,0ms;
+        -moz-transition-duration: 0ms,0ms,0ms;
+        -o-transition-duration: 0ms,0ms,0ms;
+        transition-duration: 0ms,0ms,0ms;
+        -webkit-transition-delay: 375ms,375ms,375ms;
+        -moz-transition-delay: 375ms,375ms,375ms;
+        -o-transition-delay: 375ms,375ms,375ms;
+        transition-delay: 375ms,375ms,375ms;
+        -webkit-transition-timing-function: linear,linear,linear;
+        -moz-transition-timing-function: linear,linear,linear;
+        -o-transition-timing-function: linear,linear,linear;
+        transition-timing-function: linear,linear,linear;
+      }
+      #tabpanel-menu.active{
+            max-height: 999999999em;
+            padding: 3em;
+            z-index: 300;
+            visibility: visible;
+            overflow: visible;
+            position: absolute;
+      }
+
+      #panel {
+        background: #2c3e50;
+        position: fixed;
+        width: 600px;
+        right: -28em;
+        height: 100%;
+        right: 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+        z-index: 10;
+        transform: translate(150%, 0px);
+        transition: all 1.0s ease-in-out;
+        transition-duration: 1000ms,1000ms,1000ms;
+        top: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      #panel.active {
+        -webkit-transform: translate(0%, 0px);
+        transform: translate(0%, 0px);
+        transition-timing-function: linear,linear,linear;
+        transition-timing-function: cubic-bezier(0.4, 0, 1, 1),cubic-bezier(.175,.885,.32,1.14),linear;
+      }
+
+      #content{
+        z-index: 10;
+        max-height: 999999em;
+        width: 80%;
+        margin: 0 auto;
+        transform: translate(150%, 0px);
+        transition-duration: 0ms,0ms,0ms;
+        transition: all 0.75s ease-in-out;
+        background-color: blue;
+      }
+
+      #content.active{
+        -webkit-transform: translate(0%, 0px);
+        transform: translate(0%, 0px);
+        transition: all 0.75s ease-in-out;
+        transition-delay: 0.45s;
+      }
+
+      #overlay {
+        display: none;
+        background-color: rgba(0,0,0, 0.5);
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        overflow-x: hidden;
+        z-index: 1;
+        left: 0;
+        top: 0;
+      }
+
+      #overlay.active {
+        display: block;
+        transition: all 0.75s ease-in-out;
+      }
+
+      .read {
+        border-radius: 5px;
+        width: 100px !important;
+        margin: 10 auto;
+        height: auto;
+        padding: 5px 10px;
+      }
+    </style>
+
+    <script>
+      $(document).ready(function(){
+        $(function() {
+          $.scrollify({
+            section : ".defaultDiv",
+            easing: "easeOutExpo",
+            scrollSpeed: 1100,
+            offset : 0,
+            scrollbars: true,
+            standardScrollElements: "",
+            setHeights: true,
+            before:function() {},
+            after:function() {},
+            afterResize:function() {},
+            afterRender:function() {}
+          });
+        });
+
+        $("#trigger").click(function() {
+          $("#panel").addClass("active");
+          $("#content").addClass("active");
+          $("#overlay").addClass("active");
+          $("html").css('overflow','hidden');
+          $.scrollify.disable();
+        });
+
+        $("#close-panel").click(function() {
+          $("#panel").removeClass("active");
+          $("#content").removeClass("active");
+          $("#overlay").removeClass("active");
+          $("html").css('overflow','auto');
+          $.scrollify.enable();
+        });
+
+        $("#overlay").click(function() {
+          $("#panel").removeClass("active");
+          $("#content").removeClass("active");
+          $("#overlay").removeClass("active");
+          $("html").css('overflow','auto');
+          $.scrollify.enable();
+        });
+
+        $( '#panel' ).on( 'mousewheel', function ( e ) {
+            var event = e.originalEvent,
+                d = event.wheelDelta || -event.detail;
+
+            this.scrollTop += ( d < 0 ? 1 : -1 ) * 30;
+            e.preventDefault();
+        });
+
+        $("#sampleContent").readmore({
+          collapsedHeight: 50,
+          lessLink: '<button class="read">Read Less</button>',
+          moreLink: '<button class="read">Read More</button>'
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="panel">
+      <div id="content">
+        <div id="tabpanel-menu" class="panel-menu tabpanel column" aria-labelledby="tab-menu" role="tabpanel" aria-expanded="true">
+            <button class="close-box-x close" aria-label="Close tab panel widget dialog"><i class="fa fa-fw fa-times" aria-hidden="true"></i><span class="icon-fallback">Close</span></button>
+            
+  
+  
+        
+  
+        
+  
+  <ul class="site-tree tier-1">
+    <li class="parent-level">      
+  <a href="https://www.jhu.edu/#" class="toggle-section" title="Expand About Us section"><i class="fa fa-plus-square-o" aria-hidden="true"></i><span class="icon-fallback">+</span><span class="visuallyhidden">Expand About Us section</span></a> <a href="https://www.jhu.edu/about/" title="About Us" class="destination">About Us</a>
+
+
+            
+  
+        
+        
+  
+  
+  
+  <ul class="tier-2">
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/about/university-leadership/" title="University Leadership" class="destination">University Leadership</a>
+
+
+            
+  
+        
+        
+  
+  
+  
+  <ul class="tier-3">
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://president.jhu.edu/" title="Office of the President" class="destination">Office of the President</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://web.jhu.edu/administration/provost/" title="Office of the Provost" class="destination">Office of the Provost</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/about/history/" title="History &amp; Mission" class="destination">History &amp; Mission</a>
+
+
+            
+  
+        
+        
+  
+  
+  
+  <ul class="tier-3">
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/about/history/gilman-address/" title="Gilman&#39;s Inaugural Address" class="destination">Gilman's Inaugural Address</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/about/notable-alumni/" title="Notable Alumni" class="destination">Notable Alumni</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/about/community/" title="Hopkins in the Community" class="destination">Hopkins in the Community</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/about/international/" title="Hopkins Around the World" class="destination">Hopkins Around the World</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://hub.jhu.edu/" title="News from Johns Hopkins" class="destination">News from Johns Hopkins</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+                  
+  <a href="https://www.jhu.edu/#" class="toggle-section" title="Expand Academics section"><i class="fa fa-plus-square-o" aria-hidden="true"></i><span class="icon-fallback">+</span><span class="visuallyhidden">Expand Academics section</span></a> <a href="https://www.jhu.edu/academics/" title="Academics" class="destination">Academics</a>
+
+
+            
+  
+        
+        
+  
+  
+  
+  <ul class="tier-2">
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/academics/undergraduate-studies/" title="Undergraduate Studies" class="destination">Undergraduate Studies</a>
+
+
+            
+  
+        
+        
+  
+  
+  
+  <ul class="tier-3">
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/academics/undergraduate-studies/academic-support/" title="Academic Support" class="destination">Academic Support</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/academics/undergraduate-studies/study-abroad/" title="Study Abroad" class="destination">Study Abroad</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/academics/graduate-studies/" title="Graduate Studies" class="destination">Graduate Studies</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/academics/online/" title="Online Studies" class="destination">Online Studies</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/academics/part-time-programs/" title="Part-Time &amp; Non-Degree Programs" class="destination">Part-Time &amp; Non-Degree Programs</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/academics/summer-programs/" title="Summer Programs" class="destination">Summer Programs</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/academics/calendars/" title="Academic Calendars" class="destination">Academic Calendars</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+                  
+  <a href="https://www.jhu.edu/#" class="toggle-section" title="Expand Schools &amp; Divisions section"><i class="fa fa-plus-square-o" aria-hidden="true"></i><span class="icon-fallback">+</span><span class="visuallyhidden">Expand Schools &amp; Divisions section</span></a> <a href="https://www.jhu.edu/schools/" title="Schools &amp; Divisions" class="destination">Schools &amp; Divisions</a>
+
+
+            
+  
+        
+        
+  
+  
+  
+  <ul class="tier-2">
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://www.sais-jhu.edu/" title="Advanced International Studies" class="destination">Advanced International Studies</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://www.jhuapl.edu/" title="Applied Physics Laboratory" class="destination">Applied Physics Laboratory</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://krieger.jhu.edu/" title="Arts &amp; Sciences" class="destination">Arts &amp; Sciences</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://carey.jhu.edu/" title="Business" class="destination">Business</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://education.jhu.edu/" title="Education" class="destination">Education</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://engineering.jhu.edu/" title="Engineering" class="destination">Engineering</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://www.hopkinsmedicine.org/education/index.html" title="Medicine" class="destination">Medicine</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://www.nursing.jhu.edu/" title="Nursing" class="destination">Nursing</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://www.peabody.jhu.edu/" title="Peabody Conservatory" class="destination">Peabody Conservatory</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://www.jhsph.edu/" title="Public Health" class="destination">Public Health</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+                  
+  <a href="https://www.jhu.edu/#" class="toggle-section" title="Expand Admissions &amp; Aid section"><i class="fa fa-plus-square-o" aria-hidden="true"></i><span class="icon-fallback">+</span><span class="visuallyhidden">Expand Admissions &amp; Aid section</span></a> <a href="https://www.jhu.edu/admissions/" title="Admissions &amp; Aid" class="destination">Admissions &amp; Aid</a>
+
+
+            
+  
+        
+        
+  
+  
+  
+  <ul class="tier-2">
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/admissions/undergraduate-admissions/" title="Undergraduate Admissions" class="destination">Undergraduate Admissions</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/admissions/graduate-admissions/" title="Graduate Admissions" class="destination">Graduate Admissions</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/admissions/visit/" title="Plan a Visit" class="destination">Plan a Visit</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/admissions/tuition/" title="Tuition &amp; Costs" class="destination">Tuition &amp; Costs</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/admissions/financial-aid/" title="Financial Aid" class="destination">Financial Aid</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+                  
+  <a href="https://www.jhu.edu/#" class="toggle-section" title="Expand Research &amp; Faculty section"><i class="fa fa-plus-square-o" aria-hidden="true"></i><span class="icon-fallback">+</span><span class="visuallyhidden">Expand Research &amp; Faculty section</span></a> <a href="https://www.jhu.edu/research/" title="Research &amp; Faculty" class="destination">Research &amp; Faculty</a>
+
+
+            
+  
+        
+        
+  
+  
+  
+  <ul class="tier-2">
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/research/innovation/" title="Innovation &amp; Incubation" class="destination">Innovation &amp; Incubation</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/research/milestones/" title="Milestones" class="destination">Milestones</a>
+
+
+            
+  
+        
+        
+  
+  
+  
+  <ul class="tier-3">
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/research/milestones/nobel-prize-winners/" title="Nobel Prize winners" class="destination">Nobel Prize winners</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/research/undergraduate-research/" title="Undergraduate Research" class="destination">Undergraduate Research</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/research/libraries/" title="Libraries" class="destination">Libraries</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+                  
+  <a href="https://www.jhu.edu/#" class="toggle-section" title="Expand Campus Life section"><i class="fa fa-plus-square-o" aria-hidden="true"></i><span class="icon-fallback">+</span><span class="visuallyhidden">Expand Campus Life section</span></a> <a href="https://www.jhu.edu/life/" title="Campus Life" class="destination">Campus Life</a>
+
+
+            
+  
+        
+        
+  
+  
+  
+  <ul class="tier-2">
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/life/campuses/" title="Our Campuses" class="destination">Our Campuses</a>
+
+
+            
+  
+        
+        
+  
+  
+  
+  <ul class="tier-3">
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/life/campuses/homewood/" title="Homewood Campus" class="destination">Homewood Campus</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/life/about-baltimore/" title="About Baltimore" class="destination">About Baltimore</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/life/housing-dining/" title="Housing &amp; Dining" class="destination">Housing &amp; Dining</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/life/arts-culture/" title="Arts &amp; Culture" class="destination">Arts &amp; Culture</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/life/health-wellness/" title="Health &amp; Wellness" class="destination">Health &amp; Wellness</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/life/athletics/" title="Athletics" class="destination">Athletics</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/life/security/" title="Security" class="destination">Security</a>
+
+
+            
+  
+        
+        
+  
+  
+  
+  <ul class="tier-3">
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/life/security/emergency-contact-information/" title="Emergency Contact Information" class="destination">Emergency Contact Information</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="https://www.jhu.edu/life/disability-services/" title="Disability Services" class="destination">Disability Services</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+  
+  
+    <li class="">
+  
+  
+  <a href="http://hub.jhu.edu/events" title="Calendar of Events" class="destination">Calendar of Events</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+
+            
+  
+  
+        
+        
+        
+  
+  <ul class="utility-links tier-1">
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+  
+  <a href="https://www.jhu.edu/maps-directions/" title="Maps &amp; Directions" class="destination">Maps &amp; Directions</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+  
+  <a href="https://www.jhu.edu/contact/" title="Contact the University" class="destination">Contact the University</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+  
+  <a href="https://hrnt.jhu.edu/jhujobs/" title="Employment Opportunities" class="destination">Employment Opportunities</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+  
+  <a href="https://my.jh.edu/portal/web/jhupub" title="my.johnshopkins.edu" class="destination">my.johnshopkins.edu</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+  
+  <a href="http://rising.jhu.edu/" title="Give to the University" class="destination">Give to the University</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+  
+  <a href="http://alumni.jhu.edu/" title="For Alumni" class="destination">For Alumni</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+  
+  <a href="http://parents.jhu.edu/" title="For Parents" class="destination">For Parents</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+  
+  <a href="http://hub.jhu.edu/media" title="For News Media" class="destination">For News Media</a>
+
+</li>
+
+  
+
+
+  
+    
+  
+        
+  
+  
+  
+        
+  
+    <li class="parent-level">
+  
+  
+  <a href="https://www.jhu.edu/life/athletics/" title="Athletics" class="destination">Athletics</a>
+
+</li>
+
+  
+
+
+  
+  </ul>
+
+
+          </div>
+      </div>
+    </div>
+
+    <div id="overlay">
+    </div>
+
+    <div id="first" class="defaultDiv">
+      <button id="trigger">
+        SIDEBAR CONTENT
+      </button>
+
+      <div id="sampleContent">
+        <p>
+          CONTENT <br />
+          CONTENT <br />
+          CONTENT <br />
+          CONTENT <br />
+          CONTENT <br />
+          CONTENT <br />
+          CONTENT <br />
+          CONTENT <br />
+          CONTENT
+        </p>
+      </div>
+    </div>
+    <div id="second" class="defaultDiv">
+    </div>
+    <div id="third" class="defaultDiv">
+    </div>
+  </body>
+</html>
