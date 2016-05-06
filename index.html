@@ -368,10 +368,59 @@
         transform: translateX(-8px) translateY(-4px) rotate(45deg);
       }
     /*end of navicon styles*/
+
+    /*start of header morph styles*/
+    #header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #cc5350;
+        color: #fff;
+        z-index: 1;
+        height: 100px;
+        overflow: hidden;
+        -webkit-transition: height 0.3s;
+        -moz-transition: height 0.3s;
+        transition: height 0.3s;
+        text-align: center;
+        line-height: 80px;
+      }
+
+      #header.shrink {
+        height: 50px;
+        line-height: 40px;
+      }
+
+      #header h1 {
+        font-size: 30px;
+        font-weight: normal;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+      }
+
+      #header.shrink h1 {
+        font-size: 24px;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+      }
+      /*end of header morph style*/
     </style>
 
     <script>
       $(document).ready(function(){
+        $(window).scroll(function() {
+          var scroll = $(document).scrollTop();
+          var scrollValue = 100;
+          if (scroll > scrollValue) {
+            $('#header').addClass('shrink');
+          } else {
+            $('#header').removeClass('shrink');
+          }
+        });
+
         $(function() {
           $.scrollify({
             section : ".defaultDiv",
@@ -500,6 +549,10 @@
     </div>
 
     <div id="overlay">
+    </div>
+
+    <div id="header">
+      <h1> HEADER TEXT </h1>
     </div>
 
     <div id="first" class="defaultDiv">
