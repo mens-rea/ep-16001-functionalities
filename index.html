@@ -76,6 +76,7 @@
         background: #2c3e50;
         position: fixed;
         width: 600px;
+        padding: 0px 60px;
         right: -28em;
         height: 100%;
         right: 0;
@@ -83,14 +84,13 @@
         z-index: 10;
         transform: translate(150%, 0px);
         transition: all 1.0s ease-in-out;
-        transition-duration: 1000ms,1000ms,1000ms;
+        transition-duration: 0.9s,0.9s,0.9s;
         top: 0;
-        overflow-x: hidden;
-        overflow-y: auto;
       }
 
       #panel.active {
         -webkit-transform: translate(0%, 0px);
+        padding-right: 0px;
         transform: translate(0%, 0px);
         transition-timing-function: linear,linear,linear;
         transition-timing-function: cubic-bezier(0.4, 0, 1, 1),cubic-bezier(.175,.885,.32,1.14),linear;
@@ -99,19 +99,20 @@
       #content{
         z-index: 10;
         max-height: 999999em;
-        width: 80%;
-        margin: 0 auto;
+        height: 100%;
         transform: translate(150%, 0px);
         transition-duration: 0ms,0ms,0ms;
-        transition: all 0.75s ease-in-out;
+        transition: all 0.9s ease-in-out;
         background-color: blue;
+        overflow-x: hidden;
+        overflow-y: auto;
       }
 
       #content.active{
         -webkit-transform: translate(0%, 0px);
         transform: translate(0%, 0px);
-        transition: all 0.75s ease-in-out;
-        transition-delay: 0.45s;
+        transition: all 0.9s ease-in-out;
+        transition-delay: 0.25s;
       }
 
       #overlay {
@@ -141,205 +142,204 @@
     /* end 16001 functions*/
 
     /*start of navicon styles*/
-    .c-hamburger {
-      display: block;
-      position: relative;
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
-      width: 96px;
-      height: 96px;
-      font-size: 0;
-      text-indent: -9999px;
-      appearance: none;
-      box-shadow: none;
-      border-radius: none;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+      .c-hamburger {
+        display: block;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        width: 96px;
+        height: 96px;
+        font-size: 0;
+        text-indent: -9999px;
+        appearance: none;
+        box-shadow: none;
+        border-radius: none;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
 
-    .c-hamburger:focus {
-          outline: none;
-    }
-    .c-hamburger span {
-      display: block;
-      position: absolute;
-      top: 44px;
-      left: 18px;
-      right: 18px;
-      height: 8px;
-      background: white;
-    }
-    .c-hamburger span::before,
-    .c-hamburger span::after {
-      position: absolute;
-      display: block;
-      left: 0;
-      width: 100%;
-      height: 8px;
-      background-color: #fff;
-      content: "";
-    }
-    .c-hamburger span::before {
-      top: -20px;
-    }
-    .c-hamburger span::after {
-      bottom: -20px;
-    }
+      .c-hamburger:focus {
+            outline: none;
+      }
+      .c-hamburger span {
+        display: block;
+        position: absolute;
+        top: 44px;
+        left: 18px;
+        right: 18px;
+        height: 8px;
+        background: white;
+      }
+      .c-hamburger span::before,
+      .c-hamburger span::after {
+        position: absolute;
+        display: block;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background-color: #fff;
+        content: "";
+      }
+      .c-hamburger span::before {
+        top: -20px;
+      }
+      .c-hamburger span::after {
+        bottom: -20px;
+      }
 
-    /*specific animation: rotating*/
-    .c-hamburger--rot {
-      background-color: #28aadc;
-    }
+      /*specific animation: rotating*/
+      .c-hamburger--rot {
+        background-color: #28aadc;
+      }
 
-    .c-hamburger--rot span {
-      transition: transform 0.3s;
-    }
+      .c-hamburger--rot span {
+        transition: transform 0.3s;
+      }
 
-    /* active state, i.e. menu open */
-    .c-hamburger--rot.is-active {
-      background-color: #166888;
-    }
+      /* active state, i.e. menu open */
+      .c-hamburger--rot.is-active {
+        background-color: #166888;
+      }
 
-    .c-hamburger--rot.is-active span {
-      transform: rotate(90deg);
-    }
+      .c-hamburger--rot.is-active span {
+        transform: rotate(90deg);
+      }
 
-    /*specific animation: htx*/
-    .c-hamburger--htx {
-      background-color: #ff3264;
-    }
+      /*specific animation: htx*/
+      .c-hamburger--htx {
+        background-color: #ff3264;
+      }
 
-    .c-hamburger--htx span {
-      transition: background 0s 0.3s;
-    }
+      .c-hamburger--htx span {
+        transition: background 0s 0.3s;
+      }
 
-    .c-hamburger--htx span::before,
-    .c-hamburger--htx span::after {
-      transition-duration: 0.3s, 0.3s;
-      transition-delay: 0.3s, 0s;
-    }
+      .c-hamburger--htx span::before,
+      .c-hamburger--htx span::after {
+        transition-duration: 0.3s, 0.3s;
+        transition-delay: 0.3s, 0s;
+      }
 
-    .c-hamburger--htx span::before {
-      transition-property: top, transform;
-    }
+      .c-hamburger--htx span::before {
+        transition-property: top, transform;
+      }
 
-    .c-hamburger--htx span::after {
-      transition-property: bottom, transform;
-    }
+      .c-hamburger--htx span::after {
+        transition-property: bottom, transform;
+      }
 
-    /* active state, i.e. menu open */
-    .c-hamburger--htx.is-active {
-      background-color: #cb0032;
-    }
+      /* active state, i.e. menu open */
+      .c-hamburger--htx.is-active {
+        background-color: #cb0032;
+      }
 
-    .c-hamburger--htx.is-active span {
-      background: none;
-    }
+      .c-hamburger--htx.is-active span {
+        background: none;
+      }
 
-    .c-hamburger--htx.is-active span::before {
-      top: 0;
-      transform: rotate(45deg);
-    }
+      .c-hamburger--htx.is-active span::before {
+        top: 0;
+        transform: rotate(45deg);
+      }
 
-    .c-hamburger--htx.is-active span::after {
-      bottom: 0;
-      transform: rotate(-45deg);
-    }
+      .c-hamburger--htx.is-active span::after {
+        bottom: 0;
+        transform: rotate(-45deg);
+      }
 
-    .c-hamburger--htx.is-active span::before,
-    .c-hamburger--htx.is-active span::after {
-      transition-delay: 0s, 0.3s;
-    }
+      .c-hamburger--htx.is-active span::before,
+      .c-hamburger--htx.is-active span::after {
+        transition-delay: 0s, 0.3s;
+      }
 
-    /*specific animation: htla*/
-    .c-hamburger--htla {
-      background-color: #32dc64;
-    }
+      /*specific animation: htla*/
+      .c-hamburger--htla {
+        background-color: #32dc64;
+      }
 
-    .c-hamburger--htla span {
-      transition: transform 0.3s;
-    }
+      .c-hamburger--htla span {
+        transition: transform 0.3s;
+      }
 
-    .c-hamburger--htla span::before {
-      transform-origin: top right;
-      transition: transform 0.3s, width 0.3s, top 0.3s;
-    }
+      .c-hamburger--htla span::before {
+        transform-origin: top right;
+        transition: transform 0.3s, width 0.3s, top 0.3s;
+      }
 
-    .c-hamburger--htla span::after {
-      transform-origin: bottom right;
-      transition: transform 0.3s, width 0.3s, bottom 0.3s;
-    }
+      .c-hamburger--htla span::after {
+        transform-origin: bottom right;
+        transition: transform 0.3s, width 0.3s, bottom 0.3s;
+      }
 
-    /* active state, i.e. menu open */
-    .c-hamburger--htla.is-active {
-      background-color: #18903c;
-    }
+      /* active state, i.e. menu open */
+      .c-hamburger--htla.is-active {
+        background-color: #18903c;
+      }
 
-    .c-hamburger--htla.is-active span {
-      transform: rotate(180deg);
-    }
+      .c-hamburger--htla.is-active span {
+        transform: rotate(180deg);
+      }
 
-    .c-hamburger--htla.is-active span::before,
-    .c-hamburger--htla.is-active span::after {
-      width: 50%;
-    }
+      .c-hamburger--htla.is-active span::before,
+      .c-hamburger--htla.is-active span::after {
+        width: 50%;
+      }
 
-    .c-hamburger--htla.is-active span::before {
-      top: 0;
-      transform: translateX(38px) translateY(4px) rotate(45deg);
-    }
+      .c-hamburger--htla.is-active span::before {
+        top: 0;
+        transform: translateX(38px) translateY(4px) rotate(45deg);
+      }
 
-    .c-hamburger--htla.is-active span::after {
-      bottom: 0;
-      transform: translateX(38px) translateY(-4px) rotate(-45deg);
-    }
+      .c-hamburger--htla.is-active span::after {
+        bottom: 0;
+        transform: translateX(38px) translateY(-4px) rotate(-45deg);
+      }
 
-    /*specific animation: htra*/
+      /*specific animation: htra*/
 
-    .c-hamburger--htra {
-      background-color: #ff9650;
-    }
+      .c-hamburger--htra {
+        background-color: #ff9650;
+      }
 
-    .c-hamburger--htra span {
-      transition: transform 0.3s;
-    }
+      .c-hamburger--htra span {
+        transition: transform 0.3s;
+      }
 
-    .c-hamburger--htra span::before {
-      transform-origin: top left;
-      transition: transform 0.3s, width 0.3s, top 0.3s;
-    }
+      .c-hamburger--htra span::before {
+        transform-origin: top left;
+        transition: transform 0.3s, width 0.3s, top 0.3s;
+      }
 
-    .c-hamburger--htra span::after {
-      transform-origin: bottom left;
-      transition: transform 0.3s, width 0.3s, bottom 0.3s;
-    }
+      .c-hamburger--htra span::after {
+        transform-origin: bottom left;
+        transition: transform 0.3s, width 0.3s, bottom 0.3s;
+      }
 
-    /* active state, i.e. menu open */
-    .c-hamburger--htra.is-active {
-      background-color: #e95d00;
-    }
+      /* active state, i.e. menu open */
+      .c-hamburger--htra.is-active {
+        background-color: #e95d00;
+      }
 
-    .c-hamburger--htra.is-active span {
-      transform: rotate(180deg);
-    }
+      .c-hamburger--htra.is-active span {
+        transform: rotate(180deg);
+      }
 
-    .c-hamburger--htra.is-active span::before,
-    .c-hamburger--htra.is-active span::after {
-      width: 50%;
-    }
+      .c-hamburger--htra.is-active span::before,
+      .c-hamburger--htra.is-active span::after {
+        width: 50%;
+      }
 
-    .c-hamburger--htra.is-active span::before {
-      top: 0;
-      transform: translateX(-8px) translateY(4px) rotate(-45deg);
-    }
+      .c-hamburger--htra.is-active span::before {
+        top: 0;
+        transform: translateX(-8px) translateY(4px) rotate(-45deg);
+      }
 
-    .c-hamburger--htra.is-active span::after {
-      bottom: 0;
-      transform: translateX(-8px) translateY(-4px) rotate(45deg);
-    }
-
+      .c-hamburger--htra.is-active span::after {
+        bottom: 0;
+        transform: translateX(-8px) translateY(-4px) rotate(45deg);
+      }
     /*end of navicon styles*/
     </style>
 
@@ -385,7 +385,7 @@
           $.scrollify.enable();
         });
 
-        $( '#panel' ).on( 'mousewheel', function ( e ) {
+        $( '#content' ).on( 'mousewheel', function ( e ) {
             var event = e.originalEvent,
                 d = event.wheelDelta || -event.detail;
 
