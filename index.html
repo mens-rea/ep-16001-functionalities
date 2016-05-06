@@ -88,7 +88,11 @@
         transition: all 1.0s ease-in-out;
         transition-duration: 0.9s,0.9s,0.9s;
         border-top: 10px solid #1f1f1f;
-        top: 0;
+        top: 190px;
+      }
+
+      #panel.scrolldown{
+        top: 90px;
       }
 
       #panel.active {
@@ -124,7 +128,7 @@
         width: 60px;
         height: auto;
         font-size: 24px;
-        background: #1f1f1f;
+        background: #1f1f1f !important;
         color: white;
         border: 0px;
         position: fixed;
@@ -239,6 +243,9 @@
       /*specific animation: htx*/
       .c-hamburger--htx {
         background-color: #ff3264;
+        position: fixed;
+        bottom: 0;
+        left: 0;
       }
 
       .c-hamburger--htx span {
@@ -546,12 +553,24 @@
         transition-timing-function: linear,linear,linear;
         transition-timing-function: cubic-bezier(0.4, 0, 1, 1),cubic-bezier(.175,.885,.32,1.14),linear;
       }
+
       #header.shrink #header-container{
         height: 0px;
         transition: all ease 0.5s;
         overflow: hidden;
         transition-timing-function: linear,linear,linear;
         transition-timing-function: cubic-bezier(0.4, 0, 1, 1),cubic-bezier(.175,.885,.32,1.14),linear;
+      }
+
+      #header img, #header .sb-search-input{
+        opacity: 1;
+        transition: all ease 0.25s;
+        transition-delay: 0.5s;
+      }
+
+      #header.shrink img, #header.shrink .sb-search-input{
+        opacity: 0;
+        transition: all ease 0.25s;
       }
       /*end of ep header*/
 
@@ -671,8 +690,10 @@
           var scrollValue = 100;
           if (scroll > scrollValue) {
             $('#header').addClass('shrink');
+            $('#panel').addClass('scrolldown');
           } else {
             $('#header').removeClass('shrink');
+            $('#panel').removeClass('scrolldown');
           }
         });
 
